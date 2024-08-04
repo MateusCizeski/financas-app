@@ -1,6 +1,6 @@
 ﻿namespace backend.Models
 {
-    public class Receives
+    public class Receive
     {
         public string Id { get; set; }
         public string Description { get; set; }
