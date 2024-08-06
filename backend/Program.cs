@@ -1,7 +1,11 @@
+using backend.Application.Receives;
+using backend.Application.Receives.Mapper;
 using backend.Application.Users;
 using backend.Application.Users.Mapper;
 using backend.Data;
+using backend.Repositories.Receives;
 using backend.Repositories.Users;
+using backend.Services.Receives;
 using backend.Services.Users;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +22,11 @@ builder.Services.AddTransient<IRepUsers, RepUsers>();
 builder.Services.AddScoped<IServUsers, ServUsers>();
 builder.Services.AddScoped<IAplicUsers, AplicUsers>();
 builder.Services.AddScoped<IMapperUsers, MapperUsers>();
+
+builder.Services.AddTransient<IRepReceives, RepReceives>();
+builder.Services.AddScoped<IServReceives, ServReceives>();
+builder.Services.AddScoped<IAplicReceives, AplicReceives>();
+builder.Services.AddScoped<IMapperReceive, MapperReceive>();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

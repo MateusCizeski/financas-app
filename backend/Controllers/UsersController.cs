@@ -16,7 +16,7 @@ namespace backend.Controllers
         }
 
         [HttpPost]
-        public IActionResult Save(SaveUserDTO dto)
+        public IActionResult SaveUser(SaveUserDTO dto)
         {
             var user = _aplicUsers.Save(dto);
 
