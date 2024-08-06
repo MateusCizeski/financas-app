@@ -1,7 +1,6 @@
 ﻿using backend.Data;
 using backend.Models;
 using backend.Repositories.Base;
-using Microsoft.EntityFrameworkCore;
 
 namespace backend.Repositories.Users
 {
