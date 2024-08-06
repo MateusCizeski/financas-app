@@ -1,12 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
-
-namespace backend.Models
+﻿namespace backend.Application.Receives.DTOs
 {
-    [Table("receives", Schema = "financas")]
-    public class Receive
+    public class SaveReceiveDTO
     {
-        [Key]
         public string Id { get; set; }
         public string UserId { get; set; }
         public string Description { get; set; }

@@ -10,8 +10,8 @@ namespace backend.Repositories.Users
         public string Name { get; set; }
         public string Email { get; set; }
         public decimal Balance { get; set; }
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 
     public class RepUsers : Repository<User>, IRepUsers
@@ -31,8 +31,8 @@ namespace backend.Repositories.Users
                 Name = user.Name,
                 Email = user.Email,
                 Balance = user.Balance,
-                created_at = user.created_at,
-                updated_at = user.updated_at
+                CreatedAt = user.CreatedAt,
+                UpdatedAt = user.UpdatedAt
             };
 
 
@@ -47,8 +47,8 @@ namespace backend.Repositories.Users
                 Name = u.Name,
                 Email = u.Email,
                 Balance = u.Balance,
-                created_at = u.created_at,
-                updated_at = u.updated_at
+                CreatedAt = u.CreatedAt,
+                UpdatedAt = u.UpdatedAt
             }).FirstOrDefault();
 
             return user;

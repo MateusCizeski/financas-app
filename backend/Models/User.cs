@@ -12,7 +12,7 @@ namespace backend.Models
         public string Email { get; set; }
         public string Password { get; set; }
         public decimal Balance { get; set; }
-        public DateTime created_at { get; set; }
-        public DateTime updated_at { get; set; }
+        public DateTime CreatedAt { get; set; }
+        public DateTime UpdatedAt { get; set; }
     }
 }
