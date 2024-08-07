@@ -7,6 +7,6 @@ namespace backend.Repositories.Receives
     {
         public Receive Save(Receive receive);
         public void Delete(string receiveId, string userId);
-        public List<Receive> List(string userId, DateTime date);
+        public List<Receive> List(string userId, string date);
     }
 }

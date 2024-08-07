@@ -12,7 +12,7 @@ namespace backend.Models
         public string Description { get; set; }
         public decimal Value { get; set; }
         public string Type { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
     }
