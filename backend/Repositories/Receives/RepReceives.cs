@@ -15,7 +15,7 @@ namespace backend.Repositories.Receives
             throw new NotImplementedException();
         }
 
-        public List<Receive> List(string userId, DateTime date)
+        public List<Receive> List(string userId, string date)
         {
             var receives = _context.Receives.Where(r => r.Date == date && r.UserId == userId).ToList();
 

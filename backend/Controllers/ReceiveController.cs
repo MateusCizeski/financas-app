@@ -24,7 +24,7 @@ namespace backend.Controllers
         }
 
         [HttpGet]
-        public IActionResult ListReceives(string userId, DateTime date) 
+        public IActionResult ListReceives(string userId, string date) 
         {
             var receives = _aplicReceives.List(userId, date);
 

@@ -6,6 +6,6 @@ namespace backend.Application.Receives
     public interface IAplicReceives
     {
         public Receive Save(SaveReceiveDTO dto);
-        public List<Receive> List(string userId, DateTime date);
+        public List<Receive> List(string userId, string date);
     }
 }
