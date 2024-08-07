@@ -12,7 +12,7 @@ namespace backend.Services.Users
             _repUsers = repUsers;
         }
 
-        public UserDto ListUser(string id)
+        public UserDto ListUser(int id)
         {
             var user = _repUsers.ListUser(id);
 

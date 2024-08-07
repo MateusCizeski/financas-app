@@ -17,7 +17,7 @@ namespace backend.Application.Users
             _mapperUsers = mapperUsers;
         }
 
-        public UserDto ListUser(string id)
+        public UserDto ListUser(int id)
         {
             return _servUsers.ListUser(id);
         }

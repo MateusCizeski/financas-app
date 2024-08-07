@@ -9,11 +9,13 @@ namespace backend.Application.Users.Mapper
         {
             User user = new User()
             {
-                Id = Guid.NewGuid().ToString(),
+                //Id = Guid.NewGuid().ToString(),
                 Name = dto.Name,
                 Email = dto.Email,
                 Password = dto.Password,
-                Balance = dto.Balance
+                Balance = dto.Balance,
+                CreatedAt = DateTime.Now.ToUniversalTime(),
+                UpdatedAt = DateTime.Now.ToUniversalTime()
             };
 
             return user;

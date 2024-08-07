@@ -6,7 +6,7 @@ namespace backend.Repositories.Users
 {
     public class UserDto
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public decimal Balance { get; set; }
@@ -27,7 +27,7 @@ namespace backend.Repositories.Users
 
             var userDto = new UserDto
             {
-                Id = user.Id,
+                //Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Balance = user.Balance,
@@ -39,7 +39,7 @@ namespace backend.Repositories.Users
             return userDto;
         }
 
-        public UserDto ListUser(string id)
+        public UserDto ListUser(int id)
         {
             var user = _context.Users.Where(u => u.Id == id).Select(u => new UserDto
             {
@@ -54,7 +54,7 @@ namespace backend.Repositories.Users
             return user;
         }
 
-        public void ListBalanceUser(string id, DateTime data)
+        public void ListBalanceUser(int id, DateTime data)
         {
 
         }

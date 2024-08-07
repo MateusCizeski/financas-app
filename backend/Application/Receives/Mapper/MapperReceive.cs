@@ -9,7 +9,7 @@ namespace backend.Application.Receives.Mapper
         {
             Receive receive = new Receive()
             {
-                Id = Guid.NewGuid().ToString(),
+                //Id = Guid.NewGuid().ToString(),
                 UserId = dto.UserId,
                 Description = dto.Description,
                 Value = dto.Value,

@@ -7,6 +7,6 @@ namespace backend.Application.Users
     public interface IAplicUsers
     {
         public UserDto Save(SaveUserDTO dto);
-        public UserDto ListUser(string id);
+        public UserDto ListUser(int id);
     }
 }

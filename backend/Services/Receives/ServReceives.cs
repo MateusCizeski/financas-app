@@ -12,7 +12,7 @@ namespace backend.Services.Receives
             _repReceives = repReceives;
         }
 
-        public List<Receive> List(string userId, string date)
+        public List<Receive> List(int userId, DateTime date)
         {
             var receives = _repReceives.List(userId, date);
 
