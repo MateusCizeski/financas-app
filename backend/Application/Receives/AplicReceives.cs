@@ -16,7 +16,7 @@ namespace backend.Application.Receives
             _mapperReceive = mapperReceive;
         }
 
-        public List<Receive> List(string userId, string date)
+        public List<Receive> List(int userId, DateTime date)
         {
             var receives = _servReceives.List(userId, date);
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace backend.Models
@@ -7,13 +8,22 @@ namespace backend.Models
     public class Receive
     {
         [Key]
-        public string Id { get; set; }
-        public string UserId { get; set; }
+        public int Id { get; set; }
+        public int UserId { get; set; }
         public string Description { get; set; }
         public decimal Value { get; set; }
-        public string Type { get; set; }
-        public string Date { get; set; }
+        public EnumType Type { get; set; }
+        public DateTime Date { get; set; }
         public DateTime CreatedAt { get; set; }
         public DateTime UpdatedAt { get; set; }
+
+    }
+    public enum EnumType
+    {
+       [Description("Revenue")]
+       Revenue = 1,
+
+       [Description("Expense")]
+       Expense = 2
     }
 }

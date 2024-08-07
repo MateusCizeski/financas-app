@@ -25,7 +25,7 @@ namespace backend.Controllers
 
         [HttpGet]
         [Route("/{id}")]
-        public IActionResult ListUser(string id)
+        public IActionResult ListUser(int id)
         {
             var user = _aplicUsers.ListUser(id);
 
