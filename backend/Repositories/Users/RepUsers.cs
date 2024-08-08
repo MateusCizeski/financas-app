@@ -16,9 +16,7 @@ namespace backend.Repositories.Users
 
     public class RepUsers : Repository<User>, IRepUsers
     {
-        public RepUsers(ReceivesContext context) : base(context)
-        {
-        }
+        public RepUsers(ReceivesContext context) : base(context) { }
 
         public UserDto Save(User user)
         {
@@ -27,7 +25,7 @@ namespace backend.Repositories.Users
 
             var userDto = new UserDto
             {
-                //Id = user.Id,
+                Id = user.Id,
                 Name = user.Name,
                 Email = user.Email,
                 Balance = user.Balance,

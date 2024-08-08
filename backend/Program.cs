@@ -18,6 +18,9 @@ builder.Services.AddDbContext<ReceivesContext>(options =>
     .EnableSensitiveDataLogging()
     .LogTo(Console.WriteLine, LogLevel.Information));
 
+AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+AppContext.SetSwitch("Npgsql.DisableDateTimeInfinityConversions", true);
+
 builder.Services.AddTransient<IRepUsers, RepUsers>();
 builder.Services.AddScoped<IServUsers, ServUsers>();
 builder.Services.AddScoped<IAplicUsers, AplicUsers>();
