@@ -23,28 +23,6 @@ namespace backend.Data
                     property.SetColumnName(newName);
                 }
             }
-
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.Property(e => e.CreatedAt)
-                    .HasColumnName("created_at")
-                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                entity.Property(e => e.UpdatedAt)
-                    .HasColumnName("updated_at")
-                    .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                    .ValueGeneratedOnAddOrUpdate();
-            });
-
-            modelBuilder.Entity<Receive>(entity =>
-            {
-                entity.Property(e => e.CreatedAt)
-                    .HasDefaultValueSql("CURRENT_TIMESTAMP");
-
-                entity.Property(e => e.UpdatedAt)
-                    .HasDefaultValueSql("CURRENT_TIMESTAMP")
-                    .ValueGeneratedOnAddOrUpdate();
-            });
         }
         private string ToSnakeCase(string input)
         {

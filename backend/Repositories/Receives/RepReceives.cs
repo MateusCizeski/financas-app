@@ -6,9 +6,7 @@ namespace backend.Repositories.Receives
 {
     public class RepReceives : Repository<Receive>, IRepReceives
     {
-        public RepReceives(ReceivesContext context) : base(context)
-        {
-        }
+        public RepReceives(ReceivesContext context) : base(context) { }
 
         public void Delete(int receiveId, int userId)
         {

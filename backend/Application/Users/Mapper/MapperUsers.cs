@@ -9,7 +9,6 @@ namespace backend.Application.Users.Mapper
         {
             User user = new User()
             {
-                //Id = Guid.NewGuid().ToString(),
                 Name = dto.Name,
                 Email = dto.Email,
                 Password = dto.Password,
