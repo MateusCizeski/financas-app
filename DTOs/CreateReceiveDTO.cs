@@ -2,5 +2,10 @@
 {
     public class CreateReceiveDTO
     {
+        public string Description { get; set; }
+        public decimal Value { get; set; }
+        public string Type { get; set; }
+        public string Date { get; set; }
+        public int UserId { get; set; }
     }
 }

@@ -2,5 +2,6 @@
 {
     public class ListDetailUserDTO
     {
+        public int UserId { get; set; }
     }
 }
