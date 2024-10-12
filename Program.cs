@@ -1,4 +1,6 @@
+using financas_app.Aplication;
 using financas_app.Data;
+using financas_app.Services;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
@@ -36,6 +38,9 @@ builder.Services.AddDbContext<FinanceAppContext>(options =>
 builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IServiceReceive, ServiceReceive>();
+builder.Services.AddScoped<IAplicReceive, AplicReceive>();
 
 var app = builder.Build();
 

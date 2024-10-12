@@ -12,6 +12,19 @@ namespace financas_app.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.Entity<User>()
+                .ToTable("users")
+                .HasKey(u => u.Id);
+
+            modelBuilder.Entity<Receive>()
+                .ToTable("receives")
+                .HasKey(r => r.Id);
+
+            modelBuilder.Entity<Receive>()
+                .HasOne(r => r.User)
+                .WithMany(u => u.Receives)
+                .HasForeignKey(r => r.UserId);
+
             base.OnModelCreating(modelBuilder);
         }
     }
