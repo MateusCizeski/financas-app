@@ -41,6 +41,8 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddScoped<IServiceReceive, ServiceReceive>();
 builder.Services.AddScoped<IAplicReceive, AplicReceive>();
+builder.Services.AddScoped<IServUser, ServiceUser>();
+builder.Services.AddScoped<IAplicUser, AplicUser>();
 
 var app = builder.Build();
 
