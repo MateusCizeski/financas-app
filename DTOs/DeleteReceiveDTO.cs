@@ -2,7 +2,7 @@
 {
     public class DeleteReceiveDTO
     {
-        public int ItemId { get; set; }
+        public int ReceiveId { get; set; }
         public int UserId { get; set; }
     }
 }

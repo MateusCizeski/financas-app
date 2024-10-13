@@ -13,34 +13,49 @@ namespace financas_app.Services
             _financeAppContext = financeAppContext;
         }
 
-        public CreateReceiveDTO CreateReceive(Receive receive)
+        public Receive CreateReceive(CreateReceiveDTO dto)
         {
-            if (!receive.UserId)
+            if (dto.UserId == null)
             {
                 throw new Exception("user id is required.");
             }
 
-            var user = _financeAppContext.User.Where(u => u.Id == receive.UserId).FirstOrDefault();
+            var user = _financeAppContext.User.Where(u => u.Id == dto.UserId).FirstOrDefault();
 
             if(user == null)
             {
                 throw new Exception("User not found.");
             }
 
-            user.Balance += receive.Type == "receita" ? receive.Value : -receive.Value;
+            user.Balance += dto.Type == "receita" ? dto.Value : -dto.Value;
 
             _financeAppContext.User.Update(user);
+            
+
+            var receive = new Receive
+            {
+                Description = dto.Description,
+                Value = dto.Value,
+                Type = dto.Type,
+                Date = dto.Date,
+                UserId = dto.UserId
+            };
+
+            _financeAppContext.Receive.Add(receive);
             _financeAppContext.SaveChanges();
 
-            return new CreateReceiveDTO
-            {
-                Id = receive.Id,
-                Description = receive.Description,
-                Value = receive.Value,
-                Type = receive.Type,
-                Date = receive.Date,
-                UserId = receive.UserId
-            };
+            return receive;
+        }
+
+        public void DeleteReceive(DeleteReceiveDTO dto)
+        {
+            var receive = _financeAppContext.Receive.Where(r => r.Id == dto.ReceiveId).FirstOrDefault();
+            var user = _financeAppContext.User.Where(u => u.Id == dto.UserId).FirstOrDefault();
+            var valueUpdated = receive.Type == "despesa" ? user.Balance += receive.Value : user.Balance -= receive.Value;
+
+            _financeAppContext.Receive.Remove(receive);
+            _financeAppContext.User.Update(user);
+            _financeAppContext.SaveChanges();
         }
 
         public List<Receive> ListReceives()

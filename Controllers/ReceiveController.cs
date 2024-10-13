@@ -1,6 +1,7 @@
 ﻿using financas_app.Aplication;
 using financas_app.Data;
 using financas_app.DTOs;
+using financas_app.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace financas_app.Controllers
@@ -23,13 +24,32 @@ namespace financas_app.Controllers
         [HttpPost]
         public IActionResult CreateReceive([FromBody] CreateReceiveDTO dto)
         {
-            return null;
+            try
+            {
+                var receive = _aplicReceive.CreateReceive(dto);
+
+                return Ok(receive);
+            }
+            catch(Exception ex)
+            {
+                Console.WriteLine(ex.InnerException?.Message ?? ex.Message);
+                throw;
+            }
         }
 
         [HttpDelete]
         public IActionResult DeleteReceive([FromBody] DeleteReceiveDTO dto)
         {
-            return null;
+            try
+            {
+                _aplicReceive.DeleteReceive(dto);
+
+                return Ok();
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
         }
 
         [HttpGet]

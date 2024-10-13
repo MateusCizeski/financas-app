@@ -5,7 +5,8 @@ namespace financas_app.Services
 {
     public interface IServiceReceive
     {
-        CreateReceiveDTO CreateReceive(Receive receive);
+        Receive CreateReceive(CreateReceiveDTO dto);
+        void DeleteReceive(DeleteReceiveDTO dto);
         List<Receive> ListReceives();
     }
 }
