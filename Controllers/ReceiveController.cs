@@ -6,66 +6,40 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace financas_app.Controllers
 {
-    [Authorize]
+    [Authorize] // Bloqueia o acesso sem autenticação
     [ApiController]
     [Route("api/Receive")]
     public class ReceiveController : ControllerBase
     {
-        private readonly FinanceAppContext _context;
-        private readonly IConfiguration _configuration;
         private readonly IAplicReceive _aplicReceive;
 
-        public ReceiveController(FinanceAppContext context, IConfiguration configuration, IAplicReceive aplicReceive)
+        public ReceiveController(IAplicReceive aplicReceive)
         {
-            _context = context;
-            _configuration = configuration;
             _aplicReceive = aplicReceive;
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult CreateReceive([FromBody] CreateReceiveDTO dto)
         {
-            try
-            {
-                var receive = _aplicReceive.CreateReceive(dto);
-
-                return Ok(receive);
-            }
-            catch(Exception ex)
-            {
-                Console.WriteLine(ex.InnerException?.Message ?? ex.Message);
-                throw;
-            }
+            var receive = _aplicReceive.CreateReceive(dto);
+            return CreatedAtAction(nameof(CreateReceive), new { id = receive.Id }, receive);
         }
 
+        [Authorize]
         [HttpDelete]
         public IActionResult DeleteReceive([FromBody] DeleteReceiveDTO dto)
         {
-            try
-            {
-                _aplicReceive.DeleteReceive(dto);
-
-                return Ok();
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+            _aplicReceive.DeleteReceive(dto);
+            return NoContent();
         }
 
+        [Authorize]
         [HttpGet]
-        [AllowAnonymous]
         public IActionResult ListReceives()
-        { 
-            try
-            {
-                var receives = _aplicReceive.ListReceives();
-                return Ok(receives);
-            }
-            catch(Exception e)
-            {
-                throw new Exception(e.Message);
-            }
+        {
+            var receives = _aplicReceive.ListReceives();
+            return Ok(receives);
         }
     }
 }

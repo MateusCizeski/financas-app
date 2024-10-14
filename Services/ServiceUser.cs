@@ -73,7 +73,9 @@ namespace financas_app.Services
                 throw new Exception("Invalid password");
             }
 
-            return _jwtService.GenerateJwtToken(user.Name);
+            var token = _jwtService.GenerateJwtToken(user.Name);
+
+            return $"Bearer {token}";
         }
 
         public ListDetailUserDTO ListDetailUser(int id)
