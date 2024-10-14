@@ -1,6 +1,8 @@
 ﻿using financas_app.Data;
 using financas_app.DTOs;
 using financas_app.Models;
+using BCrypt.Net;
+using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace financas_app.Services
 {
@@ -13,10 +15,12 @@ namespace financas_app.Services
     public class ServiceUser : IServUser
     {
         private readonly FinanceAppContext _financeAppContext;
+        private readonly JwtService _jwtService;
 
-        public ServiceUser(FinanceAppContext financeAppContext)
+        public ServiceUser(FinanceAppContext financeAppContext, JwtService jwtService)
         {
             _financeAppContext = financeAppContext;
+            _jwtService = jwtService;
         }
 
         public ReturnUserDTO CreateUser(CreateUserDTO dto)
@@ -33,12 +37,13 @@ namespace financas_app.Services
                 throw new Exception("User already exists");
             }
 
+            var hashedPassword = BCrypt.Net.BCrypt.HashPassword(dto.Password);
+
             var user = new User
             {
                 Name = dto.Name,
                 Email = dto.Email,
-                Password = dto.Password,
-                Balance = dto.Balance
+                Password = hashedPassword
             };
 
             _financeAppContext.User.Add(user);
@@ -50,6 +55,25 @@ namespace financas_app.Services
                 Email = user.Email,
                 Balance = user.Balance
             };
+        }
+
+        public string AuthUser(AuthLoginDTO dto)
+        {
+            var user = _financeAppContext.User.Where(u => u.Email == dto.Email).FirstOrDefault();
+
+            if (user == null)
+            {
+                throw new Exception("Email/Password incorret");
+            }
+
+            bool isPasswordValid = BCrypt.Net.BCrypt.Verify(dto.Password, user.Password);
+
+            if (!isPasswordValid)
+            {
+                throw new Exception("Invalid password");
+            }
+
+            return _jwtService.GenerateJwtToken(user.Name);
         }
 
         public ListDetailUserDTO ListDetailUser(int id)

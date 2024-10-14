@@ -20,6 +20,13 @@ namespace financas_app.Aplication
             return user;
         }
 
+        public string AuthUser(AuthLoginDTO dto)
+        {
+            var user = _servUser.AuthUser(dto);
+
+            return user;
+        }
+
         public ListDetailUserDTO ListDetailUser(int id)
         {
             var user = _servUser.ListDetailUser(id);

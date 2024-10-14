@@ -36,11 +36,21 @@ namespace financas_app.Controllers
             }
         }
 
-        //[HttpPost]
-        //public IActionResult AuthUser([FromBody] AuthLoginDTO dto)
-        //{
-        //    return null;
-        //}
+        [HttpPost("login")]
+        public IActionResult AuthUser([FromBody] AuthLoginDTO dto)
+        {
+            try
+            {
+                var user = _aplicUser.AuthUser(dto);
+
+                return Ok(user);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.InnerException?.Message ?? ex.Message);
+                throw;
+            }
+        }
 
         [HttpGet]
         [Route("/{id}")]

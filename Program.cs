@@ -43,7 +43,7 @@ builder.Services.AddScoped<IServiceReceive, ServiceReceive>();
 builder.Services.AddScoped<IAplicReceive, AplicReceive>();
 builder.Services.AddScoped<IServUser, ServiceUser>();
 builder.Services.AddScoped<IAplicUser, AplicUser>();
-
+builder.Services.AddScoped<JwtService>();
 var app = builder.Build();
 
 if (app.Environment.IsDevelopment())

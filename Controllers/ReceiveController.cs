@@ -1,11 +1,12 @@
 ﻿using financas_app.Aplication;
 using financas_app.Data;
 using financas_app.DTOs;
-using financas_app.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace financas_app.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/Receive")]
     public class ReceiveController : ControllerBase
@@ -53,6 +54,7 @@ namespace financas_app.Controllers
         }
 
         [HttpGet]
+        [AllowAnonymous]
         public IActionResult ListReceives()
         { 
             try
