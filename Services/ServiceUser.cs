@@ -75,7 +75,7 @@ namespace financas_app.Services
 
             var token = _jwtService.GenerateJwtToken(user.Name);
 
-            return $"Bearer {token}";
+            return token;
         }
 
         public ListDetailUserDTO ListDetailUser(int id)
