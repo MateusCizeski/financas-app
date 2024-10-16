@@ -7,10 +7,23 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Configuração do JWT
 var jwtSettings = builder.Configuration.GetSection("Jwt");
 var key = Encoding.ASCII.GetBytes(jwtSettings["Key"]);
+
+builder.WebHost.ConfigureKestrel(options =>
+{
+    options.ListenAnyIP(5011);
+});
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAll", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 
 builder.Services.AddAuthentication(options =>
 {
@@ -28,7 +41,7 @@ builder.Services.AddAuthentication(options =>
         ValidIssuer = jwtSettings["Issuer"],
         ValidAudience = jwtSettings["Audience"],
         IssuerSigningKey = new SymmetricSecurityKey(key),
-        ClockSkew = TimeSpan.Zero // Evita tolerância no tempo de expiração
+        ClockSkew = TimeSpan.Zero
     };
 });
 
@@ -72,7 +85,8 @@ builder.Services.AddScoped<JwtService>();
 
 var app = builder.Build();
 
-// Middleware para desenvolvimento
+app.UseCors("AllowAll");
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -81,9 +95,8 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-// Configuração do Middleware de Autenticação e Autorização
-app.UseAuthentication(); // Verifica a autenticação do token
-app.UseAuthorization();  // Verifica as políticas de autorização
+app.UseAuthentication();
+app.UseAuthorization();
 
 app.MapControllers();
 
