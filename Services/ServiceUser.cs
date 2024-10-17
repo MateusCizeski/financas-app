@@ -57,7 +57,7 @@ namespace financas_app.Services
             };
         }
 
-        public string AuthUser(AuthLoginDTO dto)
+        public ReturnAuthLoginDTO AuthUser(AuthLoginDTO dto)
         {
             var user = _financeAppContext.User.Where(u => u.Email == dto.Email).FirstOrDefault();
 
@@ -75,7 +75,12 @@ namespace financas_app.Services
 
             var token = _jwtService.GenerateJwtToken(user.Name);
 
-            return token;
+            return new ReturnAuthLoginDTO
+            {
+                Id = user.Id,
+                Name = user.Name,
+                Token = token
+            };
         }
 
         public ListDetailUserDTO ListDetailUser(int id)

@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace financas_app.Controllers
 {
-    [Authorize] // Bloqueia o acesso sem autenticação
+    [Authorize]
     [ApiController]
     [Route("api/Receive")]
     public class ReceiveController : ControllerBase
@@ -28,9 +28,10 @@ namespace financas_app.Controllers
 
         [Authorize]
         [HttpDelete]
-        public IActionResult DeleteReceive([FromBody] DeleteReceiveDTO dto)
+        [Route("{id}")]
+        public IActionResult DeleteReceive([FromRoute] int id)
         {
-            _aplicReceive.DeleteReceive(dto);
+            _aplicReceive.DeleteReceive(id);
             return NoContent();
         }
 

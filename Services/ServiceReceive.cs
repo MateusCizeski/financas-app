@@ -47,10 +47,16 @@ namespace financas_app.Services
             return receive;
         }
 
-        public void DeleteReceive(DeleteReceiveDTO dto)
+        public void DeleteReceive(int id)
         {
-            var receive = _financeAppContext.Receive.Where(r => r.Id == dto.ReceiveId).FirstOrDefault();
-            var user = _financeAppContext.User.Where(u => u.Id == dto.UserId).FirstOrDefault();
+            var receive = _financeAppContext.Receive.Where(r => r.Id == id).FirstOrDefault();
+
+            if(receive == null)
+            {
+                throw new Exception("Expense or Income does not exist.");
+            }
+
+            var user = _financeAppContext.User.Where(u => u.Id == receive.UserId).FirstOrDefault();
             var valueUpdated = receive.Type == "despesa" ? user.Balance += receive.Value : user.Balance -= receive.Value;
 
             _financeAppContext.Receive.Remove(receive);
