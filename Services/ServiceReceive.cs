@@ -64,9 +64,9 @@ namespace financas_app.Services
             _financeAppContext.SaveChanges();
         }
 
-        public List<Receive> ListReceives()
+        public List<Receive> ListReceives(ListReceiveDTO dto)
         {
-            var receives = _financeAppContext.Receive.ToList();
+            var receives = _financeAppContext.Receive.Where(r => r.Date == dto.Date && r.UserId == dto.UserId).ToList();
 
             return receives;
         }

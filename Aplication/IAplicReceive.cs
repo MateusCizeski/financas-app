@@ -5,7 +5,7 @@ namespace financas_app.Aplication
 {
     public interface IAplicReceive
     {
-        List<Receive> ListReceives();
+        List<Receive> ListReceives(ListReceiveDTO dto);
         Receive CreateReceive(CreateReceiveDTO dto);
         void DeleteReceive(int id);
     }

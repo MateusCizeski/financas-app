@@ -37,9 +37,9 @@ namespace financas_app.Controllers
 
         [Authorize]
         [HttpGet]
-        public IActionResult ListReceives()
+        public IActionResult ListReceives([FromQuery] ListReceiveDTO dto)
         {
-            var receives = _aplicReceive.ListReceives();
+            var receives = _aplicReceive.ListReceives(dto);
             return Ok(receives);
         }
     }

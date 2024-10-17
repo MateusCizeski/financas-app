@@ -7,6 +7,6 @@ namespace financas_app.Services
     {
         Receive CreateReceive(CreateReceiveDTO dto);
         void DeleteReceive(int id);
-        List<Receive> ListReceives();
+        List<Receive> ListReceives(ListReceiveDTO dto);
     }
 }

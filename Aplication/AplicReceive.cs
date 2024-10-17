@@ -25,9 +25,9 @@ namespace financas_app.Aplication
             _serviceReceive.DeleteReceive(id);
         }
 
-        public List<Receive> ListReceives()
+        public List<Receive> ListReceives(ListReceiveDTO dto)
         {
-           var receives = _serviceReceive.ListReceives();
+           var receives = _serviceReceive.ListReceives(dto);
 
             return receives;
         }
